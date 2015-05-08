@@ -96,7 +96,7 @@ extension ViewController{
                 view.layer.transform = CATransform3DMakeRotation(1.5, 1.0, 0.0, 0.0)
                 view.layer.transform.m34 = -1.0/800.0;
             }else if level == .floorChildLevel1{
-                view.layer.zPosition = 8000
+                view.layer.zPosition = 7000
             }
             
         }
