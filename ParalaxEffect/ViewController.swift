@@ -9,8 +9,8 @@
 import UIKit
 
 enum ParalaxLevel: Float{
-    case background = 5.0
-    case floor = 0.11
+    case background = 6.0
+    case floor = 0.2
     case floorChildLevel1 = 0.5
     case level1 = 80.0
     case level2 = 160.0
