@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.addParalaxEffectTo(backgroundViews!, level: .background)
-        //self.addParalaxEffectTo(floorViews!, level: .floor)
+        self.addParalaxEffectTo(floorViews!, level: .floor)
         self.addParalaxEffectTo(floorChildViewsLevel1!, level: .floorChildLevel1)
         self.addParalaxEffectTo(viewsLevel2!, level: .level1)
         self.addParalaxEffectTo(viewsLevel3!, level: .level2)
