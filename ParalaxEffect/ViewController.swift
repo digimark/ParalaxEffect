@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.addParalaxEffectTo(backgroundViews!, level: .background)
-        self.addParalaxEffectTo(floorViews!, level: .floor)
+        //self.addParalaxEffectTo(floorViews!, level: .floor)
         self.addParalaxEffectTo(floorChildViewsLevel1!, level: .floorChildLevel1)
         self.addParalaxEffectTo(viewsLevel2!, level: .level1)
         self.addParalaxEffectTo(viewsLevel3!, level: .level2)
@@ -89,8 +89,7 @@ extension ViewController{
             
             view.layer.shadowOffset = level.shadow().offset
             view.layer.shadowOpacity = level.shadow().opacity
-            
-            
+
             if level == .floor{
                 view.layer.zPosition = 800;
                 view.layer.transform = CATransform3DMakeRotation(1.5, 1.0, 0.0, 0.0)
