@@ -85,6 +85,7 @@ extension ViewController{
             motionGroup.motionEffects = [motionEffectX, motionEffectY, motionEffectRotateX, motionEffectRotateY]
         }
        
+        //Iterate through each view and add motionEffect, shadow and CATransform3D
         for view in views{
             view.addMotionEffect(motionGroup)
             view.layer.zPosition = CGFloat(level.rawValue);
