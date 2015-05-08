@@ -37,7 +37,6 @@ class ViewController: UIViewController {
     @IBOutlet var viewsLevel2: Array<UIView>?
     @IBOutlet var viewsLevel3: Array<UIView>?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,17 +53,22 @@ class ViewController: UIViewController {
 //MARK: private
 extension ViewController{
     
-    private func addParalaxEffectTo(var views: Array<UIView>, var level: ParalaxLevel){
+    private func addParalaxEffectTo(views: Array<UIView>, level: ParalaxLevel){
+        func motionEffectOnAxis(type: UIInterpolatingMotionEffectType, level: ParalaxLevel) ->UIInterpolatingMotionEffect{
+            
+            let keyPath = type == .TiltAlongHorizontalAxis ? "center.x" : "center.y"
+            
+            let motionEffect = UIInterpolatingMotionEffect(keyPath: keyPath , type: type)
+            motionEffect.minimumRelativeValue = -level.rawValue
+            motionEffect.maximumRelativeValue = level.rawValue
+            
+            return motionEffect
+        }
         
-        let motionEffectX = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
-        motionEffectX.minimumRelativeValue = -level.rawValue
-        motionEffectX.maximumRelativeValue = level.rawValue
-        
-        let motionEffectY = UIInterpolatingMotionEffect(keyPath: "center.y", type: .TiltAlongVerticalAxis)
-        motionEffectY.minimumRelativeValue = -level.rawValue/2
-        motionEffectY.maximumRelativeValue = level.rawValue/2
-        
+        let motionEffectX = motionEffectOnAxis(.TiltAlongHorizontalAxis, level)
+        let motionEffectY = motionEffectOnAxis(.TiltAlongVerticalAxis, level)
         let motionGroup = UIMotionEffectGroup()
+        
         motionGroup.motionEffects = [motionEffectX, motionEffectY]
         
         if level == .floor || level == .floorChildLevel1{
@@ -79,7 +83,6 @@ extension ViewController{
             motionGroup.motionEffects = [motionEffectX, motionEffectY, motionEffectRotateX, motionEffectRotateY]
         }
        
-        
         for view in views{
             view.addMotionEffect(motionGroup)
             view.layer.zPosition = CGFloat(level.rawValue);
