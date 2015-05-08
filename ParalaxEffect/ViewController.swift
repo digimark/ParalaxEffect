@@ -57,10 +57,12 @@ extension ViewController{
         func motionEffectOnAxis(type: UIInterpolatingMotionEffectType, level: ParalaxLevel) ->UIInterpolatingMotionEffect{
             
             let keyPath = type == .TiltAlongHorizontalAxis ? "center.x" : "center.y"
+            let relativeValue = type == .TiltAlongHorizontalAxis ? level.rawValue : level.rawValue/2.0
+            
             
             let motionEffect = UIInterpolatingMotionEffect(keyPath: keyPath , type: type)
-            motionEffect.minimumRelativeValue = -level.rawValue
-            motionEffect.maximumRelativeValue = level.rawValue
+            motionEffect.minimumRelativeValue = -relativeValue
+            motionEffect.maximumRelativeValue = relativeValue
             
             return motionEffect
         }
